@@ -23,6 +23,9 @@ def help_message():
     print("Example usages:")
     print(sys.argv[0] + " ./")
 
+def display_image(img):
+    cv2.imshow('display',img)
+    cv2.waitKey(0)
 
 def reconstruct_from_binary_patterns():
     scale_factor = 1.0
@@ -33,7 +36,7 @@ def reconstruct_from_binary_patterns():
     ref_avg = (ref_white + ref_black) / 2.0
     ref_on = ref_avg + 0.05  # a threshold for ON pixels
     ref_off = ref_avg - 0.05  # add a small buffer region
-    print ref_avg
+
     h, w = ref_white.shape
 
     # mask of pixels where there is projection
@@ -54,8 +57,9 @@ def reconstruct_from_binary_patterns():
         bit_code = np.uint16(1 << i)
 
         # TODO: populate scan_bits by putting the bit_code according to on_mask
+        scan_bits[on_mask==True] += bit_code
 
-
+    np.savetxt('test.txt', scan_bits[scan_bits>0] , delimiter=',', fmt='%d')
     print("load codebook")
     # the codebook translates from <binary code> to (x,y) in projector screen space
     with open("binary_codes_ids_codebook.pckl", "r") as f:
@@ -70,14 +74,17 @@ def reconstruct_from_binary_patterns():
             if scan_bits[y, x] not in binary_codes_ids_codebook:
                 continue  # bad binary code
 
-                # TODO: use binary_codes_ids_codebook[...] and scan_bits[y,x] to
-                # TODO: find for the camera (x,y) the projector (p_x, p_y).
-                # TODO: store your points in camera_points and projector_points
-
-                # IMPORTANT!!! : due to differences in calibration and acquisition - divide the camera points by 2
+            # TODO: use binary_codes_ids_codebook[...] and scan_bits[y,x] to
+            # TODO: find for the camera (x,y) the projector (p_x, p_y).
+            # TODO: store your points in camera_points and projector_points
+            cam_y, cam_x = binary_codes_ids_codebook[scan_bits[y, x]]
+            cam_x /= 2
+            cam_y /= 2
+            camera_points.append((cam_y,cam_x))
+            projector_points.append((y, x))
+            # IMPORTANT!!! : due to differences in calibration and acquisition - divide the camera points by 2
 
     # now that we have 2D-2D correspondances, we can triangulate 3D points!
-
     # load the prepared stereo calibration between projector and camera
     with open("stereo_calibration.pckl", "r") as f:
         d = pickle.load(f)
@@ -90,11 +97,15 @@ def reconstruct_from_binary_patterns():
 
         # TODO: use cv2.undistortPoints to get normalized points for camera, use camera_K and camera_d
         # TODO: use cv2.undistortPoints to get normalized points for projector, use projector_K and projector_d
-
         # TODO: use cv2.triangulatePoints to triangulate the normalized points
         # TODO: use cv2.convertPointsFromHomogeneous to get real 3D points
         # TODO: name the resulted 3D points as "points_3d"
-
+        camera_points = np.array(camera_points)
+        projector_points = np.array(projector_points)
+        cam_norm = cv2.undistortPoints(camera_points, camera_K, camera_d)
+        proj_norm = cv2.undistortPoints(projector_points, projector_K, projector_d, projector_t, projector_R)
+        points_2d = cv2.triangulatePoints(cam_norm, proj_norm)
+        points_3d = cv2.convertPointsFromHomogeneous(points_2d, points_3d)
         return points_3d
 
 
@@ -108,7 +119,7 @@ def write_3d_points(points_3d):
         for p in points_3d:
             f.write("%d %d %d\n" % (p[0, 0], p[0, 1], p[0, 2]))
 
-    return points_3d, camera_points, 2
+    # return points_3d, camera_points, 2
 
 if __name__ == '__main__':
 
