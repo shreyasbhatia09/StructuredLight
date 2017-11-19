@@ -2,6 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c6a4ce1-acbd-4cd3-977e-fca6b07c00e8" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern000.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern001.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern002.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern003.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern004.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern005.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern006.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern007.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern008.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern009.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern010.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern011.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern012.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern013.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern014.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern015.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern016.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reconstruct.py" afterPath="$PROJECT_DIR$/reconstruct.py" />
     </list>
@@ -17,14 +34,19 @@
       <file leaf-file-name="reconstruct.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reconstruct.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-326">
-              <caret line="104" column="38" lean-forward="false" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="38" />
+            <state relative-caret-position="195">
+              <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>scale_factor</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -37,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="527" />
     <option name="y" value="41" />
     <option name="width" value="641" />
@@ -59,7 +81,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -67,15 +88,11 @@
               <item name="StructuredLight" type="b2602c69:ProjectViewProjectNode" />
               <item name="StructuredLight" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="StructuredLight" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StructuredLight" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -108,7 +125,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="StructureFromLight" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/reconstruct.py" />
-      <option name="PARAMETERS" value="Output/" />
+      <option name="PARAMETERS" value="./" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
@@ -132,13 +149,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="527" y="41" width="1301" height="744" extended-state="7" />
+    <frame x="527" y="41" width="1301" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23827825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23827825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33033034" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35569423" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -160,13 +177,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/reconstruct.py</url>
-          <line>88</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -174,7 +184,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -187,93 +197,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/reconstruct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reconstruct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HW5StructredLight/reconstruct.py" />
     <entry file="file://$PROJECT_DIR$/HW5StructredLight/reconstruct.py" />
-    <entry file="file://$PROJECT_DIR$/images/pattern002.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern003.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern004.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern005.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern006.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern007.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern008.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern009.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern010.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern011.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern012.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern013.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern015.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern016.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern001.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern000.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/images/pattern014.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/images/pattern002.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern003.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern004.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern005.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern006.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern007.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern008.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern009.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern010.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern011.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern012.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern013.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern015.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern016.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern001.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern000.jpg" />
+    <entry file="file://$PROJECT_DIR$/images/pattern014.jpg" />
     <entry file="file://$PROJECT_DIR$/binary_codes_ids_codebook.pckl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -281,10 +239,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/reconstruct.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-326">
-          <caret line="104" column="38" lean-forward="false" selection-start-line="104" selection-start-column="23" selection-end-line="104" selection-end-column="38" />
+        <state relative-caret-position="195">
+          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -29,9 +29,9 @@ def display_image(img):
 
 def reconstruct_from_binary_patterns():
     scale_factor = 1.0
-    ref_white = cv2.resize(cv2.imread("images/pattern000.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
+    ref_white = cv2.resize(cv2.imread("images/aligned000.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
                            fy=scale_factor)
-    ref_black = cv2.resize(cv2.imread("images/pattern001.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
+    ref_black = cv2.resize(cv2.imread("images/aligned001.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
                            fy=scale_factor)
     ref_avg = (ref_white + ref_black) / 2.0
     ref_on = ref_avg + 0.05  # a threshold for ON pixels
@@ -47,9 +47,9 @@ def reconstruct_from_binary_patterns():
     # analyze the binary patterns from the camera
     for i in range(0, 15):
         # read the file
-        # patt = cv2.resize(cv2.imread("images/pattern%03d.jpg" % (i + 2)), (0, 0), fx=scale_factor, fy=scale_factor)
-        patt_gray = cv2.resize(cv2.imread("images/pattern%03d.jpg" % (i + 2), cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0),
+        patt_gray = cv2.resize(cv2.imread("images/aligned%03d.jpg" % (i + 2), cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0),
                                fx=scale_factor, fy=scale_factor)
+
         # mask where the pixels are ON
         on_mask = (patt_gray > ref_on) & proj_mask
 
@@ -59,7 +59,6 @@ def reconstruct_from_binary_patterns():
         # TODO: populate scan_bits by putting the bit_code according to on_mask
         scan_bits[on_mask==True] += bit_code
 
-    np.savetxt('test.txt', scan_bits[scan_bits>0] , delimiter=',', fmt='%d')
     print("load codebook")
     # the codebook translates from <binary code> to (x,y) in projector screen space
     with open("binary_codes_ids_codebook.pckl", "r") as f:
@@ -67,6 +66,7 @@ def reconstruct_from_binary_patterns():
 
     camera_points = []
     projector_points = []
+    # corr_img = np.zeros((proj_mask.shape[0], proj_mask.shape[1], 3))
     for x in range(w):
         for y in range(h):
             if not proj_mask[y, x]:
@@ -77,13 +77,18 @@ def reconstruct_from_binary_patterns():
             # TODO: use binary_codes_ids_codebook[...] and scan_bits[y,x] to
             # TODO: find for the camera (x,y) the projector (p_x, p_y).
             # TODO: store your points in camera_points and projector_points
-            cam_y, cam_x = binary_codes_ids_codebook[scan_bits[y, x]]
-            cam_x /= 2
-            cam_y /= 2
-            camera_points.append((cam_y,cam_x))
-            projector_points.append((y, x))
+            proj_x, proj_y = binary_codes_ids_codebook[scan_bits[y, x]]
             # IMPORTANT!!! : due to differences in calibration and acquisition - divide the camera points by 2
+            if proj_x >= 1279 or proj_y >= 799:  # filter
+                continue
+            projector_points.append([[proj_x, proj_y]])
+            camera_points.append([[y/2.0, x/2.0]])
+            # corr_img[y, x, 2] = np.uint8((proj_x / 1280.0) * 255)
+            # corr_img[y, x, 1] = np.uint8((proj_y / 1280.0) * 255)
 
+    # cv2.imshow("corr_img", np.array(corr_img).astype('uint8'))
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
     # now that we have 2D-2D correspondances, we can triangulate 3D points!
     # load the prepared stereo calibration between projector and camera
     with open("stereo_calibration.pckl", "r") as f:
@@ -100,12 +105,17 @@ def reconstruct_from_binary_patterns():
         # TODO: use cv2.triangulatePoints to triangulate the normalized points
         # TODO: use cv2.convertPointsFromHomogeneous to get real 3D points
         # TODO: name the resulted 3D points as "points_3d"
-        camera_points = np.array(camera_points)
-        projector_points = np.array(projector_points)
+        camera_points = np.asarray(camera_points).astype(np.float32)
+        projector_points = np.asarray(projector_points).astype(np.float32)
         cam_norm = cv2.undistortPoints(camera_points, camera_K, camera_d)
-        proj_norm = cv2.undistortPoints(projector_points, projector_K, projector_d, projector_t, projector_R)
-        points_2d = cv2.triangulatePoints(cam_norm, proj_norm)
-        points_3d = cv2.convertPointsFromHomogeneous(points_2d, points_3d)
+        proj_norm = cv2.undistortPoints(projector_points, projector_K, projector_d)
+
+        p1 = np.hstack((projector_R, projector_t))
+        p0 = np.array([[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0]])
+
+        points_2d = cv2.triangulatePoints(p0, p1, cam_norm, proj_norm)
+        points_2d = points_2d.T
+        points_3d = cv2.convertPointsFromHomogeneous(points_2d)
         return points_3d
 
 
