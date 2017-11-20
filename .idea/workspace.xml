@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0c6a4ce1-acbd-4cd3-977e-fca6b07c00e8" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern000.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern001.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern002.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern005.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern006.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern007.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern008.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern009.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern010.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern011.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern012.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern013.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern014.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern015.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/images/pattern016.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/output.xyz" afterPath="$PROJECT_DIR$/output.xyz" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reconstruct.py" afterPath="$PROJECT_DIR$/reconstruct.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +18,8 @@
       <file leaf-file-name="reconstruct.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/reconstruct.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+            <state relative-caret-position="235">
+              <caret line="143" column="33" lean-forward="false" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -46,6 +30,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>scale_factor</find>
+      <find>shape</find>
+      <find>print</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -81,6 +67,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -92,8 +80,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -152,7 +138,7 @@
     <frame x="527" y="41" width="1301" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23827825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23827825" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35569423" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -166,6 +152,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="401" y="328" width="629" height="191" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -213,6 +200,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/reconstruct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reconstruct.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HW5StructredLight/reconstruct.py" />
     <entry file="file://$PROJECT_DIR$/HW5StructredLight/reconstruct.py" />
     <entry file="file://$PROJECT_DIR$/images/pattern002.jpg" />
@@ -232,6 +235,7 @@
     <entry file="file://$PROJECT_DIR$/images/pattern001.jpg" />
     <entry file="file://$PROJECT_DIR$/images/pattern000.jpg" />
     <entry file="file://$PROJECT_DIR$/images/pattern014.jpg" />
+    <entry file="file://$PROJECT_DIR$/test.txt" />
     <entry file="file://$PROJECT_DIR$/binary_codes_ids_codebook.pckl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -239,18 +243,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="2" lean-forward="true" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/reconstruct.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+        <state relative-caret-position="235">
+          <caret line="143" column="33" lean-forward="false" selection-start-line="143" selection-start-column="33" selection-end-line="143" selection-end-column="33" />
           <folding />
         </state>
       </provider>

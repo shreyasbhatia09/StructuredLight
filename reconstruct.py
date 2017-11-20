@@ -23,9 +23,11 @@ def help_message():
     print("Example usages:")
     print(sys.argv[0] + " ./")
 
+
 def display_image(img):
-    cv2.imshow('display',img)
+    cv2.imshow('display', img)
     cv2.waitKey(0)
+
 
 def reconstruct_from_binary_patterns():
     scale_factor = 1.0
@@ -57,7 +59,7 @@ def reconstruct_from_binary_patterns():
         bit_code = np.uint16(1 << i)
 
         # TODO: populate scan_bits by putting the bit_code according to on_mask
-        scan_bits[on_mask==True] += bit_code
+        scan_bits[on_mask == True] += bit_code
 
     print("load codebook")
     # the codebook translates from <binary code> to (x,y) in projector screen space
@@ -66,7 +68,8 @@ def reconstruct_from_binary_patterns():
 
     camera_points = []
     projector_points = []
-    # corr_img = np.zeros((proj_mask.shape[0], proj_mask.shape[1], 3))
+    corr_img = np.zeros((proj_mask.shape[0], proj_mask.shape[1], 3))
+
     for x in range(w):
         for y in range(h):
             if not proj_mask[y, x]:
@@ -80,15 +83,15 @@ def reconstruct_from_binary_patterns():
             proj_x, proj_y = binary_codes_ids_codebook[scan_bits[y, x]]
             # IMPORTANT!!! : due to differences in calibration and acquisition - divide the camera points by 2
             if proj_x >= 1279 or proj_y >= 799:  # filter
-                continue
+                 continue
             projector_points.append([[proj_x, proj_y]])
-            camera_points.append([[y/2.0, x/2.0]])
-            # corr_img[y, x, 2] = np.uint8((proj_x / 1280.0) * 255)
-            # corr_img[y, x, 1] = np.uint8((proj_y / 1280.0) * 255)
+            camera_points.append([[x / 2.0, y / 2.0]])
+            corr_img[y, x, 2] = np.uint8((proj_x / 1279.0) * 255.0)
+            corr_img[y, x, 1] = np.uint8((proj_y / 799.0) * 255.0)
 
-    # cv2.imshow("corr_img", np.array(corr_img).astype('uint8'))
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
+    cv2.imshow("corr_img", np.array(corr_img).astype('uint8'))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
     # now that we have 2D-2D correspondances, we can triangulate 3D points!
     # load the prepared stereo calibration between projector and camera
     with open("stereo_calibration.pckl", "r") as f:
@@ -107,8 +110,12 @@ def reconstruct_from_binary_patterns():
         # TODO: name the resulted 3D points as "points_3d"
         camera_points = np.asarray(camera_points).astype(np.float32)
         projector_points = np.asarray(projector_points).astype(np.float32)
-        cam_norm = cv2.undistortPoints(camera_points, camera_K, camera_d)
-        proj_norm = cv2.undistortPoints(projector_points, projector_K, projector_d)
+
+        cam_norm = cv2.undistortPoints(src=camera_points, cameraMatrix=camera_K, distCoeffs=camera_d)
+        proj_norm = cv2.undistortPoints(src=projector_points,  cameraMatrix=projector_K, distCoeffs=projector_d)
+
+        # p1 = np.hstack((projector_K, np.zeros(shape=[3,1], dtype=np.float32))) * np.hstack((projector_R, projector_t))
+        # p0 = np.hstack((camera_K, np.zeros(shape=[3,1], dtype=np.float32))) * np.array([[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0]])
 
         p1 = np.hstack((projector_R, projector_t))
         p0 = np.array([[1.0, 0.0, 0.0, 0.0], [0.0, 1.0, 0.0, 0.0], [0.0, 0.0, 1.0, 0.0]])
@@ -116,7 +123,17 @@ def reconstruct_from_binary_patterns():
         points_2d = cv2.triangulatePoints(p0, p1, cam_norm, proj_norm)
         points_2d = points_2d.T
         points_3d = cv2.convertPointsFromHomogeneous(points_2d)
-        return points_3d
+
+        filter_3d = []
+        for i in range(len(points_3d)):
+            if 200 < points_3d[i][0][2] < 1400:
+                filter_3d.append(points_3d[i])
+        return np.array(filter_3d)
+
+        # mask = (points_3d[:, :, 2] > 200) & (points_3d[:, :, 2] < 1400)
+        # return points_3d[mask]
+        # return points_3d[mask]
+
 
 
 def write_3d_points(points_3d):
@@ -130,6 +147,7 @@ def write_3d_points(points_3d):
             f.write("%d %d %d\n" % (p[0, 0], p[0, 1], p[0, 2]))
 
     # return points_3d, camera_points, 2
+
 
 if __name__ == '__main__':
 
