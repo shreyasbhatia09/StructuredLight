@@ -31,10 +31,11 @@ def display_image(img):
 
 def reconstruct_from_binary_patterns():
     scale_factor = 1.0
-    ref_white = cv2.resize(cv2.imread("images/aligned000.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
+    ref_white = cv2.resize(cv2.imread("images/pattern000.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
                            fy=scale_factor)
-    ref_black = cv2.resize(cv2.imread("images/aligned001.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
+    ref_black = cv2.resize(cv2.imread("images/pattern001.jpg", cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0), fx=scale_factor,
                            fy=scale_factor)
+    cam_color = cv2.imread("images/pattern001.jpg")
     ref_avg = (ref_white + ref_black) / 2.0
     ref_on = ref_avg + 0.05  # a threshold for ON pixels
     ref_off = ref_avg - 0.05  # add a small buffer region
@@ -49,7 +50,7 @@ def reconstruct_from_binary_patterns():
     # analyze the binary patterns from the camera
     for i in range(0, 15):
         # read the file
-        patt_gray = cv2.resize(cv2.imread("images/aligned%03d.jpg" % (i + 2), cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0),
+        patt_gray = cv2.resize(cv2.imread("images/pattern%03d.jpg" % (i + 2), cv2.IMREAD_GRAYSCALE) / 255.0, (0, 0),
                                fx=scale_factor, fy=scale_factor)
 
         # mask where the pixels are ON
@@ -69,7 +70,7 @@ def reconstruct_from_binary_patterns():
     camera_points = []
     projector_points = []
     corr_img = np.zeros((proj_mask.shape[0], proj_mask.shape[1], 3))
-
+    cam_rgb = []
     for x in range(w):
         for y in range(h):
             if not proj_mask[y, x]:
@@ -81,17 +82,20 @@ def reconstruct_from_binary_patterns():
             # TODO: find for the camera (x,y) the projector (p_x, p_y).
             # TODO: store your points in camera_points and projector_points
             proj_x, proj_y = binary_codes_ids_codebook[scan_bits[y, x]]
+
             # IMPORTANT!!! : due to differences in calibration and acquisition - divide the camera points by 2
             if proj_x >= 1279 or proj_y >= 799:  # filter
                  continue
             projector_points.append([[proj_x, proj_y]])
             camera_points.append([[x / 2.0, y / 2.0]])
+            cam_rgb.append([ cam_color[y, x] ])
             corr_img[y, x, 2] = np.uint8((proj_x / 1279.0) * 255.0)
             corr_img[y, x, 1] = np.uint8((proj_y / 799.0) * 255.0)
 
-    cv2.imshow("corr_img", np.array(corr_img).astype('uint8'))
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # cv2.imshow("corr_img", np.array(corr_img).astype('uint8'))
+    correspondant_img_path = sys.argv[1] + "correspondence.jpg"
+
+    cv2.imwrite(correspondant_img_path, corr_img)
     # now that we have 2D-2D correspondances, we can triangulate 3D points!
     # load the prepared stereo calibration between projector and camera
     with open("stereo_calibration.pckl", "r") as f:
@@ -124,11 +128,21 @@ def reconstruct_from_binary_patterns():
         points_2d = points_2d.T
         points_3d = cv2.convertPointsFromHomogeneous(points_2d)
 
+        color_pts = []
         filter_3d = []
         for i in range(len(points_3d)):
             if 200 < points_3d[i][0][2] < 1400:
                 filter_3d.append(points_3d[i])
-        return np.array(filter_3d)
+                color_pts.append(cam_rgb[i])
+        filter_3d = np.asarray(filter_3d)
+        color_pts = np.asarray(color_pts)
+
+        output_name_color = sys.argv[1] + "output_color.xyz"
+        with open(output_name_color, "w") as f:
+            for p, c in zip(filter_3d, color_pts):
+                f.write("%d %d %d %d %d %d\n" % (p[0, 0], p[0, 1], p[0, 2], c[0, 0], c[0, 1], c[0, 2]))
+
+        return filter_3d
 
         # mask = (points_3d[:, :, 2] > 200) & (points_3d[:, :, 2] < 1400)
         # return points_3d[mask]
